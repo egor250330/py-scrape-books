@@ -35,6 +35,7 @@ class BookSpider(scrapy.Spider):
             book: Selector
     ) -> dict:
         detail_url = response.urljoin(book.css("a::attr(href)").get())
+        # Используем Selenium, так как контент загружается через JavaScript
         self.driver.get(detail_url)
 
         detail_page = self.driver.page_source
